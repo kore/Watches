@@ -9,22 +9,12 @@
             </a>
         </li>
     {{/_attachments}}
+    {{^_attachments}}
+        <li class="span4">
+            <p>Keine Bilder vorhanden.</p>
+        </li>
+    {{/_attachments}}
     </ul>
-
-    <form action="/api/{{_id}}" method="POST" class="well form-vertical" id="watch-attach">
-        <fieldset>
-            <legend>Upload Attachment</legend>
-            <input name="_rev" value="{{_rev}}" type="hidden">
-
-            <div class="control-group">
-                <div class="controls">
-                    <input name="_attachments" type="file" class="input-file" />
-                </div>
-            </div>
-
-            <button class="btn btn-primary" type="submit">Anhängen</button>
-        </fieldset>
-    </form>
 </div>
 <div class="span8">
     <h1>Uhr {{number}}</h1>
@@ -42,4 +32,19 @@
             <tr><th>Wert</th><td>{{value}} €</td></tr>
         </tbody>
     </table>
+
+    <form action="/api/{{_id}}" method="POST" class="well form-vertical" id="watch-attach">
+        <fieldset>
+            <legend>Upload Attachment</legend>
+            <input name="_rev" value="{{_rev}}" type="hidden">
+
+            <div class="control-group">
+                <div class="controls">
+                    <input name="_attachments" type="file" class="input-file" />
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Anhängen</button>
+        </fieldset>
+    </form>
 </div>
