@@ -1,5 +1,5 @@
 function ( doc ) {
     if ( doc.type === "watch" ) {
-        emit( null, null );
+        emit( doc.number, null );
     }
 }
