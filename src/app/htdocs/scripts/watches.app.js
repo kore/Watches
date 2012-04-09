@@ -1,12 +1,18 @@
+/**
+ * Basic application dispatching configuration
+ *
+ * Licensed under AGPL3
+ */
 (function( global ) {
 
     var App = function() {
         var app = this;
 
         $( '#content' ).templating();
-        $( '#navigation' ).markCurrent( {
-            "main":      "home",
-            "something": "something",
+        $( window ).watches();
+        $( '.navbar' ).markCurrent( {
+            "main":     "nav-home",
+            "create":   "nav-create"
         } );
 
         // General content handling
@@ -21,7 +27,7 @@
 
         $( window ).bind( "route:404", app.showNotFound );
         $( window ).bind( "route:main", app.initMain );
-        $( window ).bind( "route:something", app.initSomething );
+        $( window ).bind( "route:create", app.initCreate );
     };
 
     /**
@@ -37,9 +43,10 @@
         $.fn.dispatch.sources = [];
 
         // Mark current selected tab as selected
-        $( '#navigation' ).trigger( "markCurrentLink", [request.matched] );
+        $( '.navbar' ).trigger( "markCurrentLink", [request.matched] );
 
-        // @TODO: Init application controls
+        // Show application initilization screen
+        $( '#content' ).trigger( 'updateContents', [{template: 'initialize.mustache' }] );
     };
 
     /**
@@ -49,9 +56,7 @@
      * @param Request request
      */
     App.prototype.showNotFound = function( event, request ) {
-        $( '#content' ).trigger( 'updateContents', {
-            template: "404.tpl",
-        } );
+        $( '#content' ).trigger( 'updateContents', [{template: "404.mustache"}] );
     };
 
     /**
@@ -65,17 +70,17 @@
     };
 
     /**
-     * Initialize another view of the application
+     * Initialize accounts view of the application
      *
      * @param Event event
      * @param Request request
      */
-    App.prototype.initMain = function( event, request ) {
-        // @TODO: Implement show something.
+    App.prototype.initCreate = function( event, request ) {
+        // @TODO: Implement show main.
     };
 
     // Exports
-    global.Lounge = global.Lounge || {};
-    global.Lounge.App = App;
+    global.Watches = global.Watches || {};
+    global.Watches.App = App;
 
 })(this);

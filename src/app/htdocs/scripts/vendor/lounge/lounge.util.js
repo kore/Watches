@@ -22,7 +22,7 @@
         var contentType = contentType || "application/json";
         var error = error || function( request, textStatus, error ) {
             var result = JSON.parse( request.responseText );
-            alert( "Error: " + result.reason );
+            alert( "Error: " + result.message );
             throw( result );
         };
 
@@ -50,7 +50,7 @@
      */
     utils.queryApi = function( url, callback, data, method )
     {
-        utils.query( "/lounge" + url, callback, data, method, "application/json" );
+        utils.query( "/api" + url, callback, data, method, "application/json" );
     }
 
     /**

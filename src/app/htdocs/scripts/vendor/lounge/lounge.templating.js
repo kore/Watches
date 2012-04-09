@@ -13,7 +13,7 @@
         {
             // Replace content with spinner loading indicator
             $( e.target ).html(
-                "<h2>Loading</h2><img src=\"/images/spinner.gif\" alt=\"Loading…\" />"
+                "<h2>Loading</h2>"
             );
 
             showTemplate(
