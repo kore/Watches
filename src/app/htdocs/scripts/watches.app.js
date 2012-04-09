@@ -135,6 +135,10 @@
 
                     } );
 
+                    $( ".thumbnails button" ).bind( "click", function() {
+                        $( window ).trigger( "watchRemoveAttachment", [$( this ).attr( "data" )] );
+                    } );
+
                     $( "#watch-attach" ).bind( "submit", function( e ) {
                         $( "#watch-attach" ).ajaxSubmit( {
                             success: function( response ) {

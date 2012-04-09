@@ -6,7 +6,7 @@
 ;( function( $ ) {
     $.fn.watches = function()
     {
-        var list, load, create, update, remove;
+        var list, load, create, update, remove, removeAttachment;
 
         list = function( e, data )
         {
@@ -87,11 +87,23 @@
 
         remove = function( e, data )
         {
-            // Submit watch to database
             Lounge.utils.queryApi(
                 "/" + data._id + "?rev=" + data._rev,
                 function( data, textStatus, request ) {
                     $( e.target ).trigger( "watchUpdated" );
+                },
+                null,
+                "DELETE"
+            );
+        };
+
+        removeAttachment = function( e, data )
+        {
+            var id = data.substr( 0, data.indexOf( "/" ) );
+            Lounge.utils.queryApi(
+                "/" + data,
+                function( data, textStatus, request ) {
+                    $( e.target ).trigger( "watchLoad", [id] );
                 },
                 null,
                 "DELETE"
@@ -105,6 +117,7 @@
             $(this).bind( "watchLoad", load );
             $(this).bind( "watchUpdate", update );
             $(this).bind( "watchDelete", remove );
+            $(this).bind( "watchRemoveAttachment", removeAttachment );
         } );
     };
 }( jQuery ) );

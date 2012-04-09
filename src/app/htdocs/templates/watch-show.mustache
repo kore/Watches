@@ -4,6 +4,9 @@
     <ul class="thumbnails">
     {{#_attachments}}
         <li class="span4">
+            <button data="{{_id}}/{{name}}?rev={{_rev}}" class="btn btn-mini" style="position: absolute;">
+                <i class="icon-trash"></i>
+            </button>
             <a href="/api/{{_id}}/{{name}}" class="thumbnail">
                 <img src="/api/{{_id}}/{{name}}" alt="{{name}}" />
             </a>
