@@ -20,12 +20,8 @@
        "to": "templates/*"
    },
    {
-       "from": "/show*",
-       "to": "_show/*"
-   },
-   {
-       "from": "/list/*",
-       "to": "_list/*"
+       "from": "/api/*",
+       "to": "/../../*"
    },
    {
        "from": "/*",
