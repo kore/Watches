@@ -139,8 +139,10 @@
                     } );
 
                     $( "#watch-attach" ).bind( "submit", function( e ) {
+                        $( '#watch-upload' ).modal( "show" );
                         $( "#watch-attach" ).ajaxSubmit( {
                             success: function( response ) {
+                                $( '#watch-upload' ).modal( "hide" );
                                 $( window ).trigger( "watchLoad", [request.url.params.match] );
                             }
                         } );
