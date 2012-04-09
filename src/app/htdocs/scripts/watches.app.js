@@ -125,6 +125,16 @@
                 template: "watch-show.mustache",
                 viewData: data,
                 success:  function () {
+                    console.log( "Unbind" );
+                    $( ".thumbnails a" ).unbind( "click" );
+                    $( ".thumbnails a" ).colorbox( {
+                        rel: "thumbnail",
+                        scale: true,
+                        maxWidth: "80%",
+                        maxHeight: "80%"
+
+                    } );
+
                     $( "#watch-attach" ).bind( "submit", function( e ) {
                         $( "#watch-attach" ).ajaxSubmit( {
                             success: function( response ) {
