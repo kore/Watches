@@ -19,7 +19,7 @@
         <tbody>
         {{#watches}}
             <tr>
-                <td>{{number}}</td>
+                <td><a href="/watch/{{_id}}">{{number}}</a></td>
                 <td>{{material}}</td>
                 <td>{{features}}</td>
                 <td>{{gravure}}</td>
@@ -30,13 +30,14 @@
                 <td>{{value}} €</td>
                 <td>
                     <div class="btn-group">
-                        <button class="btn btn-mini">Editieren</button>
+                        <a href="/edit/{{_id}}" class="btn btn-mini">Editieren</a>
                         <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Editieren</a></li>
-                            <li><a href="#">Löschen</a></li>
+                            <li><a href="/watch/{{_id}}">Anschauen</a></li>
+                            <li><a href="/edit/{{_id}}">Editieren</a></li>
+                            <li><a href="/delete/{{_id}}">Löschen</a></li>
                         </ul>
                     </div> 
                 </td>
