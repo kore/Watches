@@ -47,6 +47,19 @@
 
         // Show application initilization screen
         $( '#content' ).trigger( 'updateContents', [{template: 'initialize.mustache' }] );
+
+        $( window ).dispatch( "listWatches", '#content', 'updateContents', function ( data ) {
+            return {
+                template: "watch-list.mustache",
+                viewData: {
+                    watches: $.map( data.rows, function( value ) {
+                        var watch = value.doc;
+                        watch.formattedTime = Lounge.utils.formatTime( watch.edited );
+                        return watch;
+                    } )
+                }
+            }
+        } );
     };
 
     /**
@@ -66,7 +79,7 @@
      * @param Request request
      */
     App.prototype.initMain = function( event, request ) {
-        // @TODO: Implement show main.
+        $( window ).trigger( "watchList" );
     };
 
     /**

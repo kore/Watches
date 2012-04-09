@@ -10,7 +10,12 @@
 
         list = function( e, data )
         {
-            // @TODO: Implement
+            Lounge.utils.queryApi(
+                "/_design/app/_view/watches?include_docs=true",
+                function( watches, textStatus, request ) {
+                    $( e.target ).trigger( "listWatches", [watches] );
+                }
+            );
         };
 
         create = function( e, data )

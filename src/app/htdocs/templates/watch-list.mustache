@@ -1,0 +1,45 @@
+<div class="span12">
+    <h1>Watches</h1>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Nummer</th>
+                <th>Material</th>
+                <th>Besonderheiten</th>
+                <th>Gravur</th>
+                <th>Klappbar</th>
+                <th>Genauigkeit</th>
+                <th>Baujahr</th>
+                <th>Produzent</th>
+                <th>Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+        {{#watches}}
+            <tr>
+                <td>{{number}}</td>
+                <td>{{material}}</td>
+                <td>{{features}}</td>
+                <td>{{gravure}}</td>
+                <td>{{hinged}}</td>
+                <td>{{precision}}</td>
+                <td>{{build}}</td>
+                <td>{{producer}}</td>
+                <td>
+                    <div class="btn-group">
+                        <button class="btn btn-mini">Editieren</button>
+                        <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Editieren</a></li>
+                            <li><a href="#">Löschen</a></li>
+                        </ul>
+                    </div> 
+                </td>
+            </tr>
+        {{/watches}}
+        </tbody>
+    </table>
+</div>
