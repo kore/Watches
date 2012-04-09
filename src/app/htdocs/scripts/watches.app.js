@@ -114,9 +114,28 @@
      */
     App.prototype.initView = function( event, request ) {
         $( window ).dispatch( "showWatch", '#content', 'updateContents', function ( data ) {
+            if ( data._attachments ) {
+                data._attachments = $.map( data._attachments, function( value, key ) {
+                    value.name = key;
+                    return value;
+                } );
+            }
+
             return {
                 template: "watch-show.mustache",
-                viewData: data
+                viewData: data,
+                success:  function () {
+                    $( "#watch-attach" ).bind( "submit", function( e ) {
+                        $( "#watch-attach" ).ajaxSubmit( {
+                            success: function( response ) {
+                                $( window ).trigger( "watchLoad", [request.url.params.match] );
+                            }
+                        } );
+
+                        e.stopPropagation();
+                        return false;
+                    } );
+                }
             }
         } );
 

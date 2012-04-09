@@ -1,4 +1,32 @@
-<div class="span12">
+<div class="span4">
+    <h2>Bilder</h2>
+
+    <ul class="thumbnails">
+    {{#_attachments}}
+        <li class="span4">
+            <a href="/api/{{_id}}/{{name}}" class="thumbnail">
+                <img src="/api/{{_id}}/{{name}}" alt="{{name}}" />
+            </a>
+        </li>
+    {{/_attachments}}
+    </ul>
+
+    <form action="/api/{{_id}}" method="POST" class="well form-vertical" id="watch-attach">
+        <fieldset>
+            <legend>Upload Attachment</legend>
+            <input name="_rev" value="{{_rev}}" type="hidden">
+
+            <div class="control-group">
+                <div class="controls">
+                    <input name="_attachments" type="file" class="input-file" />
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Anhängen</button>
+        </fieldset>
+    </form>
+</div>
+<div class="span8">
     <h1>Uhr {{number}}</h1>
 
     <table class="table table-condensed">
