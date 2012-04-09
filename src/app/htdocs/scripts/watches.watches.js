@@ -6,16 +6,36 @@
 ;( function( $ ) {
     $.fn.watches = function()
     {
-        var list;
+        var list, create;
 
         list = function( e, data )
         {
             // @TODO: Implement
         };
 
+        create = function( e, data )
+        {
+            var watch = data,
+                now = new Date();
+
+            watch.edited = now.getTime();
+            watch.type   = "watch";
+
+            // Submit watch to database
+            Lounge.utils.queryApi(
+                "/",
+                function( data, textStatus, request ) {
+                    $( e.target ).trigger( "watchList" );
+                },
+                JSON.stringify( watch ),
+                "POST"
+            );
+        };
+
         return this.each( function()
         {
-            $(this).bind( "listWatches", list );
+            $(this).bind( "watchList", list );
+            $(this).bind( "watchCreate", create );
         } );
     };
 }( jQuery ) );

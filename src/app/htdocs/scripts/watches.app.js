@@ -76,7 +76,14 @@
      * @param Request request
      */
     App.prototype.initCreate = function( event, request ) {
-        $( '#content' ).trigger( 'updateContents', [{template: "watch-create.mustache"}] );
+        $( '#content' ).trigger( 'updateContents', [{
+            template: "watch-create.mustache",
+            success:  function() {
+                $( "#watch-create" ).dispatch( "submit", window, "watchCreate", function () {
+                    return Lounge.utils.formToObject( "#watch-create" );
+                }, null, true );
+            }
+        }] );
     };
 
     // Exports
