@@ -22,7 +22,7 @@
         var contentType = contentType || "application/json";
         var error = error || function( request, textStatus, error ) {
             var result = JSON.parse( request.responseText );
-            alert( "Error: " + result.message );
+            alert( "Error: " + ( result.reason || result.message ) );
             throw( result );
         };
 

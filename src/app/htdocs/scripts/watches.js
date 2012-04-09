@@ -15,6 +15,10 @@ jQuery().ready(function() {
                 regexp: /^\/create$/ },
             {   name:   "watch",
                 regexp: /^\/watch\/(.*)$/ },
+            {   name:   "edit",
+                regexp: /^\/edit\/(.*)$/ },
+            {   name:   "delete",
+                regexp: /^\/delete\/(.*)$/ },
             {   name:   "404",
                 regexp: /./ }
     ] );

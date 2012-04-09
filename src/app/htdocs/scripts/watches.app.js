@@ -28,6 +28,9 @@
         $( window ).bind( "route:404", app.showNotFound );
         $( window ).bind( "route:main", app.initMain );
         $( window ).bind( "route:create", app.initCreate );
+        $( window ).bind( "route:watch", app.initView );
+        $( window ).bind( "route:edit", app.initEdit );
+        $( window ).bind( "route:delete", app.initDelete );
     };
 
     /**
@@ -48,17 +51,8 @@
         // Show application initilization screen
         $( '#content' ).trigger( 'updateContents', [{template: 'initialize.mustache' }] );
 
-        $( window ).dispatch( "listWatches", '#content', 'updateContents', function ( data ) {
-            return {
-                template: "watch-list.mustache",
-                viewData: {
-                    watches: $.map( data.rows, function( value ) {
-                        var watch = value.doc;
-                        watch.formattedTime = Lounge.utils.formatTime( watch.edited );
-                        return watch;
-                    } )
-                }
-            }
+        $( window ).bind( "watchUpdated", function() {
+            History.pushState( null, null, "/" );
         } );
     };
 
@@ -79,6 +73,19 @@
      * @param Request request
      */
     App.prototype.initMain = function( event, request ) {
+        $( window ).dispatch( "listWatches", '#content', 'updateContents', function ( data ) {
+            return {
+                template: "watch-list.mustache",
+                viewData: {
+                    watches: $.map( data.rows, function( value ) {
+                        var watch = value.doc;
+                        watch.formattedTime = Lounge.utils.formatTime( watch.edited );
+                        return watch;
+                    } )
+                }
+            }
+        } );
+
         $( window ).trigger( "watchList" );
     };
 
@@ -97,6 +104,28 @@
                 }, null, true );
             }
         }] );
+    };
+
+    /**
+     * Initialize accounts view of the application
+     *
+     * @param Event event
+     * @param Request request
+     */
+    App.prototype.initEdit = function( event, request ) {
+        $( window ).dispatch( "showWatch", '#content', 'updateContents', function ( data ) {
+            return {
+                template: "watch-edit.mustache",
+                viewData: data,
+                success:  function() {
+                    $( "#watch-edit" ).dispatch( "submit", window, "watchUpdate", function () {
+                        return Lounge.utils.formToObject( "#watch-edit" );
+                    }, null, true );
+                }
+            }
+        } );
+
+        $( window ).trigger( "watchLoad", [request.url.params.match] );
     };
 
     // Exports
