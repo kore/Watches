@@ -76,7 +76,7 @@
      * @param Request request
      */
     App.prototype.initCreate = function( event, request ) {
-        // @TODO: Implement show main.
+        $( '#content' ).trigger( 'updateContents', [{template: "watch-create.mustache"}] );
     };
 
     // Exports
