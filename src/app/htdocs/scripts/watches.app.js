@@ -145,6 +145,28 @@
         $( window ).trigger( "watchLoad", [request.url.params.match] );
     };
 
+    /**
+     * Initialize accounts view of the application
+     *
+     * @param Event event
+     * @param Request request
+     */
+    App.prototype.initDelete = function( event, request ) {
+        $( window ).dispatch( "showWatch", '#content', 'updateContents', function ( data ) {
+            return {
+                template: "watch-delete.mustache",
+                viewData: data,
+                success:  function() {
+                    $( "#watch-delete" ).dispatch( "submit", window, "watchDelete", function () {
+                        return Lounge.utils.formToObject( "#watch-delete" );
+                    }, null, true );
+                }
+            }
+        } );
+
+        $( window ).trigger( "watchLoad", [request.url.params.match] );
+    };
+
     // Exports
     global.Watches = global.Watches || {};
     global.Watches.App = App;

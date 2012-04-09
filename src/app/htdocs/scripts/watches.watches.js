@@ -6,7 +6,7 @@
 ;( function( $ ) {
     $.fn.watches = function()
     {
-        var list, load, create, update;
+        var list, load, create, update, remove;
 
         list = function( e, data )
         {
@@ -85,12 +85,26 @@
             );
         };
 
+        remove = function( e, data )
+        {
+            // Submit watch to database
+            Lounge.utils.queryApi(
+                "/" + data._id + "?rev=" + data._rev,
+                function( data, textStatus, request ) {
+                    $( e.target ).trigger( "watchUpdated" );
+                },
+                null,
+                "DELETE"
+            );
+        };
+
         return this.each( function()
         {
             $(this).bind( "watchList", list );
             $(this).bind( "watchCreate", create );
             $(this).bind( "watchLoad", load );
             $(this).bind( "watchUpdate", update );
+            $(this).bind( "watchDelete", remove );
         } );
     };
 }( jQuery ) );
