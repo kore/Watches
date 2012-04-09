@@ -112,6 +112,23 @@
      * @param Event event
      * @param Request request
      */
+    App.prototype.initView = function( event, request ) {
+        $( window ).dispatch( "showWatch", '#content', 'updateContents', function ( data ) {
+            return {
+                template: "watch-show.mustache",
+                viewData: data
+            }
+        } );
+
+        $( window ).trigger( "watchLoad", [request.url.params.match] );
+    };
+
+    /**
+     * Initialize accounts view of the application
+     *
+     * @param Event event
+     * @param Request request
+     */
     App.prototype.initEdit = function( event, request ) {
         $( window ).dispatch( "showWatch", '#content', 'updateContents', function ( data ) {
             return {
