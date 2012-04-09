@@ -20,11 +20,20 @@
 
         create = function( e, data )
         {
-            var watch = data,
-                now = new Date();
-
-            watch.edited = now.getTime();
-            watch.type   = "watch";
+            var now = new Date(),
+                watch = {
+                    type:      "watch",
+                    edited:    now.getTime(),
+                    number:    parseInt( data.number, 10 ),
+                    value:     parseInt( data.value, 10 ),
+                    material:  data.material,
+                    features:  data.features,
+                    gravure:   data.gravure,
+                    hinged:    data.hinged ? true : false,
+                    precision: data.precision,
+                    producer:  data.producer,
+                    build:     parseInt( data.build, 10 )
+                };
 
             // Submit watch to database
             Lounge.utils.queryApi(
