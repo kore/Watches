@@ -19,7 +19,7 @@
         <tbody>
         {{#watches}}
             <tr>
-                <td><a href="/watch/{{_id}}">{{number}}</a></td>
+                <td><a href="/watch/{{_id}}"><i class="icon-time"></i> {{number}}</a></td>
                 <td>{{material}}</td>
                 <td>{{features}}</td>
                 <td>{{gravure}}</td>
@@ -35,9 +35,9 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href="/watch/{{_id}}">Anschauen</a></li>
-                            <li><a href="/edit/{{_id}}">Editieren</a></li>
-                            <li><a href="/delete/{{_id}}">Löschen</a></li>
+                            <li><a href="/watch/{{_id}}"><i class="icon-time"></i> Anschauen</a></li>
+                            <li><a href="/edit/{{_id}}"><i class="icon-edit"></i> Editieren</a></li>
+                            <li><a href="/delete/{{_id}}"><i class="icon-trash"></i> Löschen</a></li>
                         </ul>
                     </div> 
                 </td>
