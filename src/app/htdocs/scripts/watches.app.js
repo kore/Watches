@@ -125,7 +125,6 @@
                 template: "watch-show.mustache",
                 viewData: data,
                 success:  function () {
-                    console.log( "Unbind" );
                     $( ".thumbnails a" ).unbind( "click" );
                     $( ".thumbnails a" ).colorbox( {
                         rel: "thumbnail",
