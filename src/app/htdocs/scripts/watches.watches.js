@@ -60,18 +60,19 @@
         {
             var now = new Date(),
                 watch = {
-                    type:      "watch",
-                    edited:    now.getTime(),
-                    _rev:      data._rev,
-                    number:    parseInt( data.number, 10 ),
-                    value:     parseInt( data.value, 10 ),
-                    material:  data.material,
-                    features:  data.features,
-                    gravure:   data.gravure,
-                    hinged:    data.hinged ? true : false,
-                    precision: data.precision,
-                    producer:  data.producer,
-                    build:     parseInt( data.build, 10 )
+                    type:         "watch",
+                    edited:       now.getTime(),
+                    _rev:         data._rev,
+                    _attachments: data._attachments,
+                    number:       parseInt( data.number, 10 ),
+                    value:        parseInt( data.value, 10 ),
+                    material:     data.material,
+                    features:     data.features,
+                    gravure:      data.gravure,
+                    hinged:       data.hinged ? true : false,
+                    precision:    data.precision,
+                    producer:     data.producer,
+                    build:        parseInt( data.build, 10 )
                 };
 
             // Submit watch to database

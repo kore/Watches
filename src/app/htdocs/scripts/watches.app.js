@@ -165,12 +165,16 @@
      */
     App.prototype.initEdit = function( event, request ) {
         $( window ).dispatch( "showWatch", '#content', 'updateContents', function ( data ) {
+            var watchData = data;
             return {
                 template: "watch-edit.mustache",
                 viewData: data,
                 success:  function() {
                     $( "#watch-edit" ).dispatch( "submit", window, "watchUpdate", function () {
-                        return Lounge.utils.formToObject( "#watch-edit" );
+                        var newWatchData = Lounge.utils.formToObject( "#watch-edit" );
+                        newWatchData._attachments = watchData._attachments;
+
+                        return newWatchData;
                     }, null, true );
                 }
             }
